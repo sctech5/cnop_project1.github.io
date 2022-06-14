@@ -37,6 +37,7 @@ html, body {
 #divTopLeft > div {
 	width: 236.5px;
 	height: 136px;
+	padding: 12px 16px;
 	background: #FFFFFF;
 	border-radius: 12px;
 	box-sizing: border-box;
@@ -62,7 +63,6 @@ span.weekly-stat {
 	border-radius: 8px;
 	display: flex;
 	justify-content: space-around;
-	background:#cccccc;
 }
 #divTopRight > div {
 	box-sizing: border-box;
@@ -197,6 +197,39 @@ span.weekly-stat {
 }
 #NavLayer > img:hover {
 	opacity: 0.5;
+}
+
+/*================= Legend Performance==================================*/
+#LegendPerformance {
+	position: absolute;
+	left: 106px;
+	top: 746px;
+	background: rgba(255, 255, 255, 0.4);
+	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+}
+#LegendPerformance > span {
+	display: inline-block;
+	border-radius: 4px;
+	padding: 0px 32px 0px 4px;
+}
+#LegendPerformance > span.color1 {
+	width: 16px;
+	height: 16px;
+	padding: 0px;
+	background: #5788FE;
+}
+#LegendPerformance > span.color2 {
+	background: #21A7A7;
+}
+#LegendPerformance > span.color3 {
+	background: #FBC246;
+}
+#LegendPerformance > span.color4 {
+	background: #FF7B6A;
+}
+#LegendPerformance > span.color5 {
+	background: #FD2D6C;
 }
 
 /*================= ChartBottom  =======================================*/

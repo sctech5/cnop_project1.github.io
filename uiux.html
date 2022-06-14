@@ -1,0 +1,189 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"/>
+<title>cnop | </title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css" type="text/css">
+<link rel="stylesheet" href="style.css" type="text/css">
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+</head><body>
+
+<script>
+
+const el=a=>{
+	const b=document.createElement(a.a);
+	a.b && a.b.appendChild(b);
+	a.c && Object.keys(a.c).forEach(c=>{
+		b.setAttribute(c, a.c[c])
+	});
+	return b;
+}
+
+const divTop=a=>{
+	const b=el({a:'div', b:a, c:{id:'divTop'}});
+	
+	//================  topleft  =======================================
+	const topLeft=el({a:'div', b:b, c:{id:'divTopLeft'}});
+	
+	el({a:'div', b:topLeft});
+	el({a:'span', b:el({a:'div', b:topLeft.children[0]})}).textContent = 'TITLE';
+	el({a:'span', b:el({a:'div', b:topLeft.children[0]}) }).textContent = 'Subtitle';
+	el({a:'span', b:el({a:'div', b:topLeft.children[0]}), c:{class:'weekly-stat'} }).textContent = '12,924';
+	el({a:'span', b:el({a:'div', b:topLeft.children[0]}) }).textContent = 'Last week: 10,154';
+	
+	el({a:'div', b:topLeft});
+	el({a:'span', b:el({a:'div', b:topLeft.children[1]})}).textContent = 'TITLE';
+	el({a:'span', b:el({a:'div', b:topLeft.children[1]}) }).textContent = 'Subtitle';
+	el({a:'span', b:el({a:'div', b:topLeft.children[1]}), c:{class:'weekly-stat'} }).textContent = '5,200';
+	el({a:'span', b:el({a:'div', b:topLeft.children[1]}) }).textContent = 'Last week: 10,154';
+	
+	el({a:'div', b:topLeft});
+	el({a:'span', b:el({a:'div', b:topLeft.children[2]})}).textContent = 'TITLE';
+	el({a:'span', b:el({a:'div', b:topLeft.children[2]}) }).textContent = 'Subtitle';
+	el({a:'span', b:el({a:'div', b:topLeft.children[2]}), c:{class:'weekly-stat'} }).textContent = '467k';
+	el({a:'span', b:el({a:'div', b:topLeft.children[2]}) }).textContent = 'Last week: 10,154';
+	
+	el({a:'div', b:topLeft});
+	el({a:'span', b:el({a:'div', b:topLeft.children[3]})}).textContent = 'TITLE';
+	el({a:'span', b:el({a:'div', b:topLeft.children[3]}) }).textContent = 'Subtitle';
+	el({a:'span', b:el({a:'div', b:topLeft.children[3]}), c:{class:'weekly-stat'} }).textContent = '43.5%';
+	el({a:'span', b:el({a:'div', b:topLeft.children[3]}) }).textContent = 'Last week: 10,154';
+	
+	//================  end topleft  ===================================
+	
+	//================  topright  ======================================
+	const topRight=el({a:'div', b:b, c:{id:'divTopRight'}});
+	el({a:'div', b:topRight});
+	el({a:'div', b:topRight, c:{style:'width:0px;border:1px solid black;'}});
+	el({a:'div', b:topRight});
+	el({a:'span', b:topRight.children[0]}).textContent = 'REGION';
+	el({a:'span', b:topRight.children[2]}).textContent = 'PERFORMANCE';
+	
+	el({a:'table', b:topRight.children[0]});
+	el({a:'tr', b:topRight.children[0].children[1]});
+	el({a:'td', b:topRight.children[0].children[1].children[0]}).textContent = 'Area';
+	var label = el({a:'label', b:el({a:'td', b:topRight.children[0].children[1].children[0]}), c:{class:'switch'}});
+	el({a:'input', b:label, c:{type:'checkbox'}});
+	el({a:'span', b:label, c:{class:'slider'}});
+	
+	el({a:'tr', b:topRight.children[0].children[1]});
+	el({a:'td', b:topRight.children[0].children[1].children[1]}).textContent = 'Telkom Regional';
+	var label = el({a:'label', b:el({a:'td', b:topRight.children[0].children[1].children[1]}), c:{class:'switch'}});
+	el({a:'input', b:label, c:{type:'checkbox'}});
+	el({a:'span', b:label, c:{class:'slider'}});
+	
+	el({a:'tr', b:topRight.children[0].children[1]});
+	el({a:'td', b:topRight.children[0].children[1].children[2]}).textContent = 'TSel Regional';
+	var label = el({a:'label', b:el({a:'td', b:topRight.children[0].children[1].children[2]}), c:{class:'switch'}});
+	el({a:'input', b:label, c:{type:'checkbox'}});
+	el({a:'span', b:label, c:{class:'slider'}});
+	
+	el({a:'table', b:topRight.children[2]});
+	el({a:'tr', b:topRight.children[2].children[1]});
+	el({a:'td', b:topRight.children[2].children[1].children[0]}).textContent = 'Latency';
+	var label = el({a:'label', b:el({a:'td', b:topRight.children[2].children[1].children[0]}), c:{class:'switch'}});
+	el({a:'input', b:label, c:{type:'checkbox'}});
+	el({a:'span', b:label, c:{class:'slider'}});
+	
+	el({a:'tr', b:topRight.children[2].children[1]});
+	el({a:'td', b:topRight.children[2].children[1].children[1]}).textContent = 'Packet Loss';
+	var label = el({a:'label', b:el({a:'td', b:topRight.children[2].children[1].children[1]}), c:{class:'switch'}});
+	el({a:'input', b:label, c:{type:'checkbox'}});
+	el({a:'span', b:label, c:{class:'slider'}});
+	
+	el({a:'tr', b:topRight.children[2].children[1]});
+	el({a:'td', b:topRight.children[2].children[1].children[2]}).textContent = 'Jitter';
+	var label = el({a:'label', b:el({a:'td', b:topRight.children[2].children[1].children[2]}), c:{class:'switch'}});
+	el({a:'input', b:label, c:{type:'checkbox'}});
+	el({a:'span', b:label, c:{class:'slider'}});
+	
+	el({a:'tr', b:topRight.children[2].children[1]});
+	el({a:'td', b:topRight.children[2].children[1].children[3]}).textContent = 'Throughput';
+	var label = el({a:'label', b:el({a:'td', b:topRight.children[2].children[1].children[3]}), c:{class:'switch'}});
+	el({a:'input', b:label, c:{type:'checkbox'}});
+	el({a:'span', b:label, c:{class:'slider'}});
+	//================  end topright  ==================================
+}
+
+const NavLeft=a=>{
+	const b=el({a:'div', b:a, c:{id:'NavLeft'}});
+	el({a:'img', b:el({a:'div', b:b}), c:{src:'style/search.png'}});
+	
+	el({a:'img', b:el({a:'div', b:b}), c:{src:'style/CX2.png'}});
+	el({a:'img', b:b.children[1], c:{src:'style/np2.png'}});
+	el({a:'img', b:b.children[1], c:{src:'style/gp2.png'}});
+	el({a:'img', b:b.children[1], c:{src:'style/cx3.png'}});
+	
+	el({a:'img', b:el({a:'div', b:b}), c:{src:'style/Profile.png'}});
+	el({a:'img', b:b.children[2], c:{src:'style/Logout.png'}});
+}
+
+const NavNote=a=>{
+	const b=el({a:'div', b:a, c:{id:'NavNote'}});
+	el({a:'img', b:b, c:{src:'style/Note2.png'}});
+	el({a:'img', b:b, c:{src:'style/History2.png'}});
+	
+	const c=el({a:'div', b:a, c:{id:'NavLayer'}});
+	el({a:'img', b:c, c:{src:'style/Layer2.png'}});
+}
+
+const hiChartJs=a=>{
+	const chart = Highcharts.chart(a, {
+		chart: {
+			type: 'bar'
+			},
+			title: {
+				text: 'Fruit Consumption'
+			},
+			xAxis: {
+				categories: ['Apples', 'Bananas', 'Oranges']
+			},
+			yAxis: {
+				title: {
+					text: 'Fruit eaten'
+				}
+			},
+			series: [{
+				name: 'Jane',
+				data: [1, 0, 4]
+			}, {
+				name: 'John',
+				data: [5, 7, 3]
+			}]
+	});
+}
+
+(()=>{
+	const a=el({a:'div', b:document.body, c:{id:'National'}});
+	
+	el({a:'span', b:el({a:'div', b:a, c:{id:'divTittle'}})}).textContent = 'NATIONAL REGION';
+	
+	divTop(a);
+	NavLeft(a);
+	NavNote(a);
+	
+	hiChartJs(el({a:'div', b:a, c:{id:'ChartBottom'}}));
+	el({a:'div', b:a, c:{id:'map'}});
+})();
+
+const layer = new ol.layer.Vector({
+	source: new ol.source.Vector({
+		url: 'indonesia-province-simple.json',
+		format: new ol.format.GeoJSON(),
+	})
+});
+
+const map = new ol.Map({
+	target: 'map',
+	layers: [layer],
+	view: new ol.View({
+		center: ol.proj.fromLonLat([120, -2]),
+		zoom: 5
+	}),
+	interactions: ol.interaction.defaults({mouseWheelZoom:false})
+});
+
+</script>
+</body></html>

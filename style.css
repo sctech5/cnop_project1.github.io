@@ -260,6 +260,58 @@ span.weekly-stat {
 	font-weight: bold;
 }
 
+#ChartBottomLastUpdate {
+	position: absolute;
+	left: 1162px;
+	top: 40px;
+	padding: 8px;
+	background: rgba(0, 0, 0, 0.6);
+	border-radius: 4px;
+	color: #FFFFFF;
+}
+
+/*================= slider ============================================*/
+#slideContainer {
+	position: absolute;
+	left: 1090px;
+	top: 38px;
+	width: 48px;
+}
+
+#slideContainer > input {
+	-webkit-appearance: none;
+	width: 100%;
+	height: 16px;
+	background: #d3d3d3;
+	border-radius: 8px;
+	outline: none;
+	opacity: 0.7;
+	-webkit-transition: .2s;
+	transition: opacity .2s;
+}
+
+#slideContainer > input:hover {
+	opacity: 1;
+}
+
+#slideContainer > input::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 16px;
+	height: 16px;
+	background: #04AA6D;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+#slideContainer > input::-moz-range-thumb {
+	width: 16px;
+	height: 16px;
+	background: #04AA6D;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
 /*================= map  ==============================================*/
 #map {
 	position: absolute;

@@ -182,6 +182,16 @@ const hiChartJs=a=>{
 	const b=el({a:'div', b:a, c:{class:'judul'}});
 	el({a:'p', b:b}).textContent = 'Latency Status';
 	el({a:'p', b:b}).textContent = 'of National Region';
+	
+	el({a:'span', b:el({a:'div', b:a, c:{id:'ChartBottomLastUpdate'}})}).textContent = 'Last Update: 20.05';
+	
+	const c=el({a:'div', b:a, c:{id:'slideContainer'}});
+	el({a:'span', b:c}).textContent = 'Weekly';
+	el({a:'br', b:c});
+	el({a:'input', b:c, c:{type:'range', min:0, max:2, step:1, value:1}}).oninput=a=>{
+		const b = ['Daily', 'Weekly', 'Monthly'];
+		document.querySelector('#slideContainer > span').textContent = b[a.target.value];
+	};
 }
 
 (()=>{

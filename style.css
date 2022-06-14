@@ -204,6 +204,7 @@ span.weekly-stat {
 	position: absolute;
 	left: 106px;
 	top: 746px;
+	padding: 8px 16px;
 	background: rgba(255, 255, 255, 0.4);
 	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
@@ -212,6 +213,9 @@ span.weekly-stat {
 	display: inline-block;
 	border-radius: 4px;
 	padding: 0px 32px 0px 4px;
+}
+#LegendPerformance > span:last-child {
+	padding-right: 4px;
 }
 #LegendPerformance > span.color1 {
 	width: 16px;

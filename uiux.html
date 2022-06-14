@@ -129,6 +129,20 @@ const NavNote=a=>{
 	el({a:'img', b:c, c:{src:'style/Layer2.png'}});
 }
 
+const LegendPerformance=a=>{
+	const b=el({a:'div', b:a, c:{id:'LegendPerformance'}});
+	el({a:'span', b:b, c:{class:'color1'}});
+	el({a:'span', b:b}).textContent = 'Excellent Performance';
+	el({a:'span', b:b, c:{class:'color1 color2'}});
+	el({a:'span', b:b}).textContent = 'Good Performance';
+	el({a:'span', b:b, c:{class:'color1 color3'}});
+	el({a:'span', b:b}).textContent = 'Low Performance';
+	el({a:'span', b:b, c:{class:'color1 color4'}});
+	el({a:'span', b:b}).textContent = 'Very Low Performance';
+	el({a:'span', b:b, c:{class:'color1 color5'}});
+	el({a:'span', b:b}).textContent = 'Bad Performance';
+}
+
 const hiChartJs=a=>{
 	Highcharts.chart(el({a:'div', b:a}), {
 		chart: {
@@ -181,7 +195,7 @@ const hiChartJs=a=>{
 	divTop(a);
 	NavLeft(a);
 	NavNote(a);
-	
+	LegendPerformance(a);
 })();
 
 const layer = new ol.layer.Vector({

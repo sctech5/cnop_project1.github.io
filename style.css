@@ -204,9 +204,23 @@ span.weekly-stat {
 	position: absolute;
 	width: 1364px;
 	height: 220px;
-	left: 47px;
+	left: 97px;/*47px;*/
 	top: 788px;
 	background: #ccc;
+}
+#ChartBottom > div.judul {
+	-ms-transform: rotate(270deg); /* IE 9 */
+	transform: rotate(270deg);
+	position: absolute;
+	top: 140px;
+	left: -90px;
+	text-align: center;
+}
+#ChartBottom > div.judul > p {
+	font-size:14px;
+}
+#ChartBottom > div.judul > p:first-child {
+	font-weight: bold;
 }
 
 /*================= map  ==============================================*/

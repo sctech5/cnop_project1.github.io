@@ -20,6 +20,8 @@ const drawIcon=a=>{
 	return a.a.canvas;
 }
 
+const elm = {}
+
 const divTop=a=>{
 	const b=el({a:'div', b:a, c:{id:'divTop'}});
 	
@@ -193,10 +195,12 @@ const hiChartJs=a=>{
 	};
 }
 
+var hoveredStateId = null;
 const addLayers1=a=>{
 	map.addSource('province', {
-		'type': 'geojson',
-		'data': a
+		type: 'geojson',
+		data: a,
+		generateId: true
 	});
 	map.addLayer({
 		'id': 'fprovince',
@@ -205,7 +209,7 @@ const addLayers1=a=>{
 		'layout': {},
 		'paint': {
 			'fill-color': '#0080ff', // blue color fill
-			'fill-opacity': 0.3
+			'fill-opacity': [ 'case', ['boolean', ['feature-state', 'hover'], false], 0.7, 0.3]
 		}
 	});
 	// Add a black outline around the polygon.
@@ -216,8 +220,36 @@ const addLayers1=a=>{
 		'layout': {},
 		'paint': {
 			'line-color': '#000',
-			'line-width': 2
+			'line-width': [ 'case', ['boolean', ['feature-state', 'hover'], false], 3, 1]
 		}
+	});
+	
+	map.on('mousemove', 'fprovince', a=> {
+		if (a.features.length > 0) {
+			if (hoveredStateId) {
+				map.setFeatureState(
+					{ source: 'province', id: hoveredStateId },
+					{ hover: false }
+				);
+			}
+			elm.title.textContent = a.features[0].properties.ADM1_EN;
+			hoveredStateId = a.features[0].id;
+			map.setFeatureState(
+				{ source: 'province', id: hoveredStateId },
+				{ hover: true }
+			);
+		}
+	});
+	
+	map.on('mouseleave', 'fprovince', () => {
+		if (hoveredStateId !== null) {
+			map.setFeatureState(
+				{ source: 'province', id: hoveredStateId },
+				{ hover: false }
+			);
+			elm.title.textContent = 'NATIONAL REGION';
+		}
+		hoveredStateId = null;
 	});
 }
 
@@ -237,6 +269,7 @@ const mapBox=()=>{
 		a.open('GET', 'province.json');
 		a.onreadystatechange=()=>{
 			if (a.readyState == 4 && a.status == 200) {
+				//console.log(JSON.parse(a.responseText).features[1])
 				addLayers1(JSON.parse(a.responseText));
 			}
 		}
@@ -272,7 +305,8 @@ const NavLeftSwitch=a=>{
 	mapBox();
 	hiChartJs(el({a:'div', b:a, c:{id:'ChartBottom'}}));
 	
-	el({a:'span', b:el({a:'div', b:a, c:{id:'divTittle'}})}).textContent = 'NATIONAL REGION';
+	elm.title = el({a:'span', b:el({a:'div', b:a, c:{id:'divTittle'}})});
+	elm.title.textContent = 'NATIONAL REGION';
 	
 	divTop(a);
 	NavLeft(a);

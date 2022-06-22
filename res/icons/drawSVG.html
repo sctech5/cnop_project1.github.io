@@ -1,0 +1,53 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Canvas Path</title>
+</head><body>
+
+<script>
+const el=a=>{
+	const b = document.createElement(a.a);
+	a.b && a.b.appendChild(b);
+	a.c && Object.keys(a.c).forEach(c=>{
+		b.setAttribute(c, a.c[c])
+	});
+	return b;
+}
+
+(()=>{
+	const a = el({a:'div', b:document.body});
+	el({a:'span', b:a, c:{style:'display:inline-block;padding:8px;'}}).textContent = 'load SVG file';
+	el({a:'input', b:a, c:{type:'file', accept:'image/svg+xml'}}).onchange=a=>{
+		const b = el({a:'img', b:el({a:'div', b:document.body})});
+		b.onload=a=>{
+			const b=el({a:'canvas', b:a.target.parentElement, c:{width:a.target.width, height:a.target.height}}).getContext('2d');
+			//b.clearRect(0,0,b.canvas.width,b.canvas.height);
+			b.drawImage(a.target, 0,0);
+			b.globalCompositeOperation='source-in';
+			b.fillStyle = '#aa0000';
+			b.fillRect(0,0,b.canvas.width/2,3*b.canvas.height/2);
+		}
+		b.src = a.target.files[0].name;
+	};
+	/*
+	const a=el({a:'canvas', b:document.body, c:[['id','width','height'],['cvs1',36,36]]});
+	a.onmouseover=a=>{
+		const b=a.target.getContext('2d');
+		b.fillStyle='blue';
+		b.fillRect(0,0,36,36);
+	}
+	a.onmouseout=a=>{
+		const b=a.target.getContext('2d');
+		b.fillStyle='#333';
+		b.fillRect(0,0,36,36);
+	}
+	el({a:'img', b:document.body, c:[['src'],['search.png']]}).onload=a=>{
+		const b=document.getElementById('cvs1').getContext('2d');
+		b.drawImage(a.target, 0,0);
+		b.globalCompositeOperation='source-in';
+	}
+	*/
+})()
+</script>
+
+</body>
+</html>

@@ -261,9 +261,12 @@ const addSrc1=a=>{
 	
 	map.on('click', `f${a.a}`, a=> {
 		if (map1.src1 !== null && a.features.length > 0) {
-			map.flyTo({
-				center: turf.centerOfMass(turf[(a.features[0].geometry.type == 'MultiPolygon' ? 'multiPolygon' : 'polygon')](a.features[0].geometry.coordinates)).geometry.coordinates//a.features[0].geometry.coordinates
-			});
+			map1.dt.features.forEach(b=>{if(b.properties.id == a.features[0].properties.id){
+				map.fitBounds(turf.bbox(b.geometry), {padding: 300})
+			}})
+			//map.flyTo({
+			//	center: turf.centerOfMass(turf[(a.features[0].geometry.type == 'MultiPolygon' ? 'multiPolygon' : 'polygon')](a.features[0].geometry.coordinates)).geometry.coordinates//a.features[0].geometry.coordinates
+			//});
 		}
 	});
 }

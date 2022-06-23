@@ -197,6 +197,7 @@ const hiChartJs=a=>{
 
 const map1 = {
 	src1: 'area.json',
+	dt: null,
 	Prop: {
 		Name: null
 	},
@@ -215,8 +216,15 @@ const addSrc1=a=>{
 		'source': a.a,
 		'layout': {},
 		'paint': {
-			'fill-color': '#0080ff', // blue color fill
-			'fill-opacity': [ 'case', ['boolean', ['feature-state', 'hover'], false], 0.7, 0.3]
+			'fill-color': [
+				'match', ['get','id'],
+					1, '#FBC246',
+					2, '#21A7A7',
+					3, '#FD2D6C',
+					4, '#5788FE',
+					'white'
+					],
+			'fill-opacity': [ 'case', ['boolean', ['feature-state', 'hover'], false], 0.8, 0.7]
 		}
 	});
 	// Add a black outline around the polygon.
@@ -226,8 +234,8 @@ const addSrc1=a=>{
 		'source': a.a,
 		'layout': {},
 		'paint': {
-			'line-color': '#000',
-			'line-width': [ 'case', ['boolean', ['feature-state', 'hover'], false], 3, 1]
+			'line-color': 'white',
+			'line-width': [ 'case', ['boolean', ['feature-state', 'hover'], false], 2, 1]
 		}
 	});
 	
@@ -279,8 +287,8 @@ const mapBox=()=>{
 		center: [116, -3], // starting position [lng, lat]
 		zoom: 4 // starting zoom
 	});
-	const mapControls = ['scrollZoom', 'boxZoom', 'dragRotate', 'dragPan', 'keyboard', 'doubleClickZoom', 'touchZoomRotate'];
-	mapControls.forEach(a=>map[a].disable());
+	//const mapControls = ['scrollZoom', 'boxZoom', 'dragRotate', 'dragPan', 'keyboard', 'doubleClickZoom', 'touchZoomRotate'];
+	['scrollZoom', 'dragRotate', 'dragPan', 'keyboard', 'doubleClickZoom', 'touchZoomRotate'].forEach(a=>map[a].disable());
 	//==================================================================
 	map.on('load', () => {
 		const a = new XMLHttpRequest();
@@ -288,8 +296,9 @@ const mapBox=()=>{
 		a.onreadystatechange=()=>{
 			if (a.readyState == 4 && a.status == 200) {
 				map1.Prop.Name = 'nama';
+				map1.dt = JSON.parse(a.responseText);
 				//console.log(JSON.parse(a.responseText).features[1])
-				addSrc1({a:map1.src1, b:JSON.parse(a.responseText)});
+				addSrc1({a:map1.src1, b:map1.dt});
 			}
 		}
 		a.send();
@@ -319,3 +328,4 @@ const NavLeftSwitch=a=>{
 	NavNote(a);
 	LegendPerformance(a);
 })();
+

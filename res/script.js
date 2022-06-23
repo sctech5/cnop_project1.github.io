@@ -195,17 +195,24 @@ const hiChartJs=a=>{
 	};
 }
 
-var hoveredStateId = null;
-const addLayers1=a=>{
-	map.addSource('province', {
+const map1 = {
+	src1: 'area.json',
+	Prop: {
+		Name: null
+	},
+	hoveredStateId: null
+}
+
+const addSrc1=a=>{
+	map.addSource(a.a, {
 		type: 'geojson',
-		data: a,
+		data: a.b,
 		generateId: true
 	});
 	map.addLayer({
-		'id': 'fprovince',
+		'id': `f${a.a}`,
 		'type': 'fill',
-		'source': 'province',
+		'source': a.a,
 		'layout': {},
 		'paint': {
 			'fill-color': '#0080ff', // blue color fill
@@ -214,9 +221,9 @@ const addLayers1=a=>{
 	});
 	// Add a black outline around the polygon.
 	map.addLayer({
-		'id': 'province',
+		'id': `l${a.a}`,
 		'type': 'line',
-		'source': 'province',
+		'source': a.a,
 		'layout': {},
 		'paint': {
 			'line-color': '#000',
@@ -224,32 +231,32 @@ const addLayers1=a=>{
 		}
 	});
 	
-	map.on('mousemove', 'fprovince', a=> {
-		if (a.features.length > 0) {
-			if (hoveredStateId) {
+	map.on('mousemove', `f${a.a}`, a=> {
+		if (map1.src1 !== null && a.features.length > 0) {
+			if (map1.hoveredStateId) {
 				map.setFeatureState(
-					{ source: 'province', id: hoveredStateId },
+					{ source: map1.src1, id: map1.hoveredStateId },
 					{ hover: false }
 				);
 			}
-			elm.title.textContent = a.features[0].properties.ADM1_EN;
-			hoveredStateId = a.features[0].id;
+			elm.title.textContent = a.features[0].properties[map1.Prop.Name];
+			map1.hoveredStateId = a.features[0].id;
 			map.setFeatureState(
-				{ source: 'province', id: hoveredStateId },
+				{ source: map1.src1, id: map1.hoveredStateId },
 				{ hover: true }
 			);
 		}
 	});
 	
-	map.on('mouseleave', 'fprovince', () => {
-		if (hoveredStateId !== null) {
+	map.on('mouseleave', `f${a.a}`, () => {
+		if (map1.src1 !== null && map1.hoveredStateId !== null) {
 			map.setFeatureState(
-				{ source: 'province', id: hoveredStateId },
+				{ source: map1.src1, id: map1.hoveredStateId },
 				{ hover: false }
 			);
 			elm.title.textContent = 'NATIONAL REGION';
 		}
-		hoveredStateId = null;
+		map1.hoveredStateId = null;
 	});
 }
 
@@ -266,29 +273,17 @@ const mapBox=()=>{
 	//==================================================================
 	map.on('load', () => {
 		const a = new XMLHttpRequest();
-		a.open('GET', 'province.json');
+		a.open('GET', `data/${map1.src1}`);
 		a.onreadystatechange=()=>{
 			if (a.readyState == 4 && a.status == 200) {
+				map1.Prop.Name = 'nama';
 				//console.log(JSON.parse(a.responseText).features[1])
-				addLayers1(JSON.parse(a.responseText));
+				addSrc1({a:map1.src1, b:JSON.parse(a.responseText)});
 			}
 		}
 		a.send();
 		
 	});
-	//==================================================================
-	/*
-	map.on('load', ()=>{
-		console.log('mao.onload')
-		console.log(`map.getStyle().layers[0].id ${map.getStyle().layers[0].id}`);
-		const layers = map.getStyle().layers;
-		for (const layer of layers) {
-			if (layer.type === 'symbol') {
-				console.log(`layer.id ${layer.id}`);
-			}
-		}
-	});
-	*/
 	return map;
 }
 

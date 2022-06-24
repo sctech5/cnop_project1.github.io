@@ -2,17 +2,18 @@ html, body {
 	margin: 0;
 	padding: 0;
 	font-family: Arial, sans-serif;
+	background: #CBD2D3;
 }
 #National {
-	position: relative;
+	position: fixed;
 	width: 100%;/*1440px;*/
-	height: 1024px;
+	/*height: 1024px;*/
 	background: #FFFFFF;
 }
 #divTittle {
-	position: absolute;
+	position: fixed;
 	left: 16px;
-	top: 160px;
+	top: 18vh;
 	font-weight: bold;
 	font-size:14px;
 }
@@ -23,42 +24,50 @@ html, body {
 	padding: 0px;
 	gap: 16px;
 	
-	position: absolute;
-	width: 1407.02px;
-	height: 136px;
+	position: fixed;
+	top: 1vh;
 	left: 8px;
-	top: 16px;
+	right: 8px;
+	/*height: 10vh;*/
 }
 #divTopLeft {
 	width: 994.02px;
-	height: 136px;
+	/*height: 15vh;*/
 	filter: drop-shadow(0px 0px 40px rgba(0, 0, 0, 0.1));
 	display: flex;
 	justify-content: space-around;
 }
 #divTopLeft > div {
 	width: 236.5px;
-	height: 136px;
-	padding: 12px 16px;
+	height: 16vh;
+	padding: 8px 16px;
 	background: #FFFFFF;
 	border-radius: 12px;
 	box-sizing: border-box;
 }
-#divTopLeft > div > div:first-child > span {
-	font-weight: 700;
-	font-size: 14px;
+#divTopLeft > div > div{
+	margin: 0;
+	padding: 0;
+}
+#divTopLeft > div > div > h4 {
+	margin: 0;
+	padding: 0;
 	color: #FD2D6C;
 }
-span.weekly-stat {
-	font-family: Arial, sans-serif;
-	font-weight: 700;
-	font-size: 48px;
+#divTopLeft > div > div > span {
+	margin: 0;
+	padding: 0;
+}
+#divTopLeft > div > div > h1 {
+	margin: 0;
+	padding: 0;
+	font-size: 2.6vw;
 }
 
 #divTopRight {
 	width: 397px;
-	height: 136px;
-	padding: 14px 10px;
+	height: 16vh;
+	padding: 8px 10px 4px 10px;
 	box-sizing: border-box;
 	filter: drop-shadow(0px 0px 40px rgba(0, 0, 0, 0.1));
 	background: #FFFFFF;
@@ -71,13 +80,19 @@ span.weekly-stat {
 	margin: 0px 5px;
 	width: 178px;
 }
-#divTopRight > div > span {
-	font-weight: 700;
-	font-size: 14px;
+#divTopRight > div > h4 {
 	color: #FD2D6C;
+	margin: 0;
+	padding: 0;
 }
 #divTopRight > div > table{
+	margin: 0;
+	padding: 0;
 	width: 100%;
+}
+#divTopRight > div > table td {
+	margin: 0;
+	padding: 0;
 }
 #divTopRight > div > table td:last-child {
 	text-align: right;
@@ -137,11 +152,12 @@ span.weekly-stat {
 
 /*================= nav left ==========================================*/
 #NavLeft {
-	position: absolute;
-	width: 52px;
-	height: 544px;
+	position: fixed;
+	top: 25vh;/*calc(50% - 544px/2);*/
+	bottom: 16vh;
 	left: 16px;
-	top: calc(50% - 544px/2);
+	width: 52px;
+	/*height: 544px;*/
 	background: #FFFFFF;
 	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
 	border-radius: 16px;
@@ -181,8 +197,8 @@ span.weekly-stat {
 #NavNote {
 	position: absolute;
 	width: 52px;
-	right: 80px;/*16px;*/
-	top: 240px;
+	right: 20px;/*16px;*/
+	top: 20vh;
 	background: #FFFFFF;
 	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
 	border-radius: 16px;
@@ -196,12 +212,10 @@ span.weekly-stat {
 
 /*================= nav note ==========================================*/
 #NavLayer {
-	position: absolute;
-	width: 52px;
-	height: 52px;
-	padding: 8px;
-	right: 80px;/*16px;*/
-	bottom: 240px;
+	position: fixed;
+	padding: 0;
+	right: 20px;/*16px;*/
+	bottom: 17vh;
 	background: #FFFFFF;
 	border-radius: 16px;
 }
@@ -209,20 +223,33 @@ span.weekly-stat {
 	opacity: 0.5;
 }
 
+#NavZoom {
+	position: fixed;
+	padding: 8px;
+	right: 80px;/*16px;*/
+	bottom: 17vh;
+	background: #FFFFFF;
+	border-radius: 16px;
+}
+#NavZoom > img:hover {
+	opacity: 0.5;
+}
+
 /*================= Legend Performance==================================*/
 #LegendPerformance {
-	position: absolute;
+	position: fixed;
 	left: 106px;
-	top: 746px;
-	padding: 8px 16px;
+	bottom: 17vh;
+	padding: 8px;
 	background: rgba(255, 255, 255, 0.4);
 	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
 }
 #LegendPerformance > span {
 	display: inline-block;
-	border-radius: 4px;
+	font-family: Arial, Helvetica, sans-serif;
 	padding: 0px 32px 0px 4px;
+	border-radius: 4px;
 }
 #LegendPerformance > span:last-child {
 	padding-right: 4px;
@@ -248,23 +275,32 @@ span.weekly-stat {
 
 /*================= ChartBottom  =======================================*/
 #ChartBottom {
-	position: absolute;
-	width: 1364px;
-	height: 220px;
-	left: 97px;/*47px;*/
-	top: 788px;
-	background: #ccc;
+	position: fixed;
+	/*width: 1364px;*/
+	height: 16vh;
+	bottom: 1px;
+	left: 100px;/*47px;*/
+	right: 30px;
+	/*top: 788px;*/
+}
+#ChartBottom > div:first-child {
+	height: 16vh;
+	margin: 0;
+	margin-right: 200px;
+	padding: 0;
 }
 #ChartBottom > div.judul {
 	-ms-transform: rotate(270deg); /* IE 9 */
 	transform: rotate(270deg);
 	position: absolute;
-	top: 140px;
-	left: -90px;
+	top: 30px;
+	left: -70px;
 	text-align: center;
 }
 #ChartBottom > div.judul > p {
 	font-size:14px;
+	margin: 0;
+	padding: 0;
 }
 #ChartBottom > div.judul > p:first-child {
 	font-weight: bold;
@@ -272,8 +308,8 @@ span.weekly-stat {
 
 #ChartBottomLastUpdate {
 	position: absolute;
-	left: 1162px;
-	top: 40px;
+	right: 8px;
+	top: 38px;
 	padding: 8px;
 	background: rgba(0, 0, 0, 0.6);
 	border-radius: 4px;
@@ -283,7 +319,7 @@ span.weekly-stat {
 /*================= slider ============================================*/
 #slideContainer {
 	position: absolute;
-	left: 1090px;
+	right: 200px;
 	top: 38px;
 	width: 48px;
 }
@@ -292,7 +328,7 @@ span.weekly-stat {
 	-webkit-appearance: none;
 	width: 100%;
 	height: 16px;
-	background: #d3d3d3;
+	background: #f0f0f0;
 	border-radius: 8px;
 	outline: none;
 	opacity: 0.7;
@@ -324,11 +360,13 @@ span.weekly-stat {
 
 /*================= map  ==============================================*/
 #map {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;/*1440px;*/
-	height: 1024px;
+	position: fixed;
+	top: 17vh;
+	bottom: 16vh;
+	left: 2px;
+	right: 2px;
+	/*/width: 100%;*//*1440px;*/
+	/*height: 1024px;*/
 	/*width: 1340px;*/
 	/*height: 490px;*/
 	/*left: 108px;*/

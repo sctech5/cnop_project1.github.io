@@ -1,19 +1,26 @@
 html, body {
+    height: 100%;
 	margin: 0;
 	padding: 0;
 	font-family: Arial, sans-serif;
-	background: #CBD2D3;
+}
+.mainCT {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 #National {
-	position: fixed;
-	width: 100%;/*1440px;*/
-	/*height: 1024px;*/
+	position: relative;
+	width: 1440px;/*1440px;*/
+	height: 1024px;
 	background: #FFFFFF;
 }
 #divTittle {
-	position: fixed;
+	position: absolute;
 	left: 16px;
-	top: 18vh;
+	top: 160px;
 	font-weight: bold;
 	font-size:14px;
 }
@@ -24,50 +31,42 @@ html, body {
 	padding: 0px;
 	gap: 16px;
 	
-	position: fixed;
-	top: 1vh;
+	position: absolute;
+	width: 1407.02px;
+	height: 136px;
 	left: 8px;
-	right: 8px;
-	/*height: 10vh;*/
+	top: 16px;
 }
 #divTopLeft {
 	width: 994.02px;
-	/*height: 15vh;*/
+	height: 136px;
 	filter: drop-shadow(0px 0px 40px rgba(0, 0, 0, 0.1));
 	display: flex;
 	justify-content: space-around;
 }
 #divTopLeft > div {
 	width: 236.5px;
-	height: 16vh;
-	padding: 8px 16px;
+	height: 136px;
+	padding: 12px 16px;
 	background: #FFFFFF;
 	border-radius: 12px;
 	box-sizing: border-box;
 }
-#divTopLeft > div > div{
-	margin: 0;
-	padding: 0;
-}
-#divTopLeft > div > div > h4 {
-	margin: 0;
-	padding: 0;
+#divTopLeft > div > div:first-child > span {
+	font-weight: 700;
+	font-size: 14px;
 	color: #FD2D6C;
 }
-#divTopLeft > div > div > span {
-	margin: 0;
-	padding: 0;
-}
-#divTopLeft > div > div > h1 {
-	margin: 0;
-	padding: 0;
-	font-size: 2.6vw;
+span.weekly-stat {
+	font-family: Arial, sans-serif;
+	font-weight: 700;
+	font-size: 48px;
 }
 
 #divTopRight {
 	width: 397px;
-	height: 16vh;
-	padding: 8px 10px 4px 10px;
+	height: 136px;
+	padding: 14px 10px;
 	box-sizing: border-box;
 	filter: drop-shadow(0px 0px 40px rgba(0, 0, 0, 0.1));
 	background: #FFFFFF;
@@ -80,19 +79,13 @@ html, body {
 	margin: 0px 5px;
 	width: 178px;
 }
-#divTopRight > div > h4 {
+#divTopRight > div > span {
+	font-weight: 700;
+	font-size: 14px;
 	color: #FD2D6C;
-	margin: 0;
-	padding: 0;
 }
 #divTopRight > div > table{
-	margin: 0;
-	padding: 0;
 	width: 100%;
-}
-#divTopRight > div > table td {
-	margin: 0;
-	padding: 0;
 }
 #divTopRight > div > table td:last-child {
 	text-align: right;
@@ -152,12 +145,11 @@ html, body {
 
 /*================= nav left ==========================================*/
 #NavLeft {
-	position: fixed;
-	top: 25vh;/*calc(50% - 544px/2);*/
-	bottom: 16vh;
-	left: 16px;
+	position: absolute;
 	width: 52px;
-	/*height: 544px;*/
+	height: 544px;
+	left: 16px;
+	top: calc(50% - 544px/2);
 	background: #FFFFFF;
 	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
 	border-radius: 16px;
@@ -197,8 +189,8 @@ html, body {
 #NavNote {
 	position: absolute;
 	width: 52px;
-	right: 20px;/*16px;*/
-	top: 20vh;
+	right: 16px;
+	top: 240px;
 	background: #FFFFFF;
 	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
 	border-radius: 16px;
@@ -212,10 +204,12 @@ html, body {
 
 /*================= nav note ==========================================*/
 #NavLayer {
-	position: fixed;
+	position: absolute;
+	width: 52px;
+	height: 52px;
 	padding: 0;
-	right: 20px;/*16px;*/
-	bottom: 17vh;
+	right: 16px;
+	bottom: 240px;
 	background: #FFFFFF;
 	border-radius: 16px;
 }
@@ -223,33 +217,32 @@ html, body {
 	opacity: 0.5;
 }
 
-#NavZoom {
-	position: fixed;
-	padding: 8px;
-	right: 80px;/*16px;*/
-	bottom: 17vh;
+#NavZoomOut {
+	position: absolute;
+	padding: 8px 12px;
+	right: 84px;
+	bottom: 240px;
 	background: #FFFFFF;
 	border-radius: 16px;
 }
-#NavZoom > img:hover {
+#NavZoomOut > img:hover {
 	opacity: 0.5;
 }
 
 /*================= Legend Performance==================================*/
 #LegendPerformance {
-	position: fixed;
+	position: absolute;
 	left: 106px;
-	bottom: 17vh;
-	padding: 8px;
+	top: 746px;
+	padding: 8px 16px;
 	background: rgba(255, 255, 255, 0.4);
 	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
 }
 #LegendPerformance > span {
 	display: inline-block;
-	font-family: Arial, Helvetica, sans-serif;
-	padding: 0px 32px 0px 4px;
 	border-radius: 4px;
+	padding: 0px 32px 0px 4px;
 }
 #LegendPerformance > span:last-child {
 	padding-right: 4px;
@@ -275,42 +268,25 @@ html, body {
 
 /*================= ChartBottom  =======================================*/
 #ChartBottom {
-	position: fixed;
-	/*width: 1364px;*/
-	height: 16vh;
-	bottom: 1px;
-	left: 100px;/*47px;*/
-	right: 30px;
-	/*top: 788px;*/
-}
-#ChartBottom > div:first-child {
-	height: 16vh;
-	margin: 0;
-	margin-right: 200px;
-	padding: 0;
-}
-#ChartBottom > div.judul {
-	-ms-transform: rotate(270deg); /* IE 9 */
-	transform: rotate(270deg);
 	position: absolute;
-	top: 30px;
-	left: -70px;
-	text-align: center;
-}
-#ChartBottom > div.judul > p {
-	font-size:14px;
-	margin: 0;
-	padding: 0;
-}
-#ChartBottom > div.judul > p:first-child {
-	font-weight: bold;
+	width: 1364px;
+	height: 224px;
+	left: 47px;
+	top: 788px;
 }
 
 #ChartBottomLastUpdate {
 	position: absolute;
-	right: 8px;
-	top: 38px;
+	right: 1px;
+	top: 8px;
+	margin: 0;
+	padding: 0;
+}
+#ChartBottomLastUpdate > span {
+	display: inline-block;
+	margin: 0px 4px 28px 20px;
 	padding: 8px;
+	vertical-align: middle;
 	background: rgba(0, 0, 0, 0.6);
 	border-radius: 4px;
 	color: #FFFFFF;
@@ -318,17 +294,17 @@ html, body {
 
 /*================= slider ============================================*/
 #slideContainer {
-	position: absolute;
-	right: 200px;
-	top: 38px;
+	display: inline-block;
 	width: 48px;
+	margin: 0;
+	padding: 0;
 }
 
 #slideContainer > input {
 	-webkit-appearance: none;
 	width: 100%;
 	height: 16px;
-	background: #f0f0f0;
+	background: rgba(0, 0, 0, 0.6);/*#d3d3d3;*/
 	border-radius: 8px;
 	outline: none;
 	opacity: 0.7;
@@ -345,7 +321,7 @@ html, body {
 	appearance: none;
 	width: 16px;
 	height: 16px;
-	background: #04AA6D;
+	background: #04CC6D;
 	border-radius: 8px;
 	cursor: pointer;
 }
@@ -353,20 +329,18 @@ html, body {
 #slideContainer > input::-moz-range-thumb {
 	width: 16px;
 	height: 16px;
-	background: #04AA6D;
+	background: #04CC6D;
 	border-radius: 8px;
 	cursor: pointer;
 }
 
 /*================= map  ==============================================*/
 #map {
-	position: fixed;
-	top: 17vh;
-	bottom: 16vh;
-	left: 2px;
-	right: 2px;
-	/*/width: 100%;*//*1440px;*/
-	/*height: 1024px;*/
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;/*1440px;*/
+	height: 1024px;
 	/*width: 1340px;*/
 	/*height: 490px;*/
 	/*left: 108px;*/

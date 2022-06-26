@@ -20,7 +20,9 @@ const drawIcon=a=>{
 	return a.a.canvas;
 }
 
-const elm = {}
+const elm = {
+		rb1:''
+	}
 
 const divTop=a=>{
 	const b=el({a:'div', b:a, c:{id:'divTop'}});
@@ -29,27 +31,27 @@ const divTop=a=>{
 	const topLeft=el({a:'div', b:b, c:{id:'divTopLeft'}});
 	
 	el({a:'div', b:topLeft});
-	el({a:'h4', b:el({a:'div', b:topLeft.children[0]})}).textContent = 'TITLE';
+	el({a:'span', b:el({a:'div', b:topLeft.children[0]})}).textContent = 'TITLE';
 	el({a:'span', b:el({a:'div', b:topLeft.children[0]}) }).textContent = 'Subtitle';
-	el({a:'h1', b:el({a:'div', b:topLeft.children[0]}), c:{class:'weekly-stat'} }).textContent = '12,924';
+	el({a:'span', b:el({a:'div', b:topLeft.children[0]}), c:{class:'weekly-stat'} }).textContent = '12,924';
 	el({a:'span', b:el({a:'div', b:topLeft.children[0]}) }).textContent = 'Last week: 10,154';
 	
 	el({a:'div', b:topLeft});
-	el({a:'h4', b:el({a:'div', b:topLeft.children[1]})}).textContent = 'TITLE';
+	el({a:'span', b:el({a:'div', b:topLeft.children[1]})}).textContent = 'TITLE';
 	el({a:'span', b:el({a:'div', b:topLeft.children[1]}) }).textContent = 'Subtitle';
-	el({a:'h1', b:el({a:'div', b:topLeft.children[1]}), c:{class:'weekly-stat'} }).textContent = '5,200';
+	el({a:'span', b:el({a:'div', b:topLeft.children[1]}), c:{class:'weekly-stat'} }).textContent = '5,200';
 	el({a:'span', b:el({a:'div', b:topLeft.children[1]}) }).textContent = 'Last week: 10,154';
 	
 	el({a:'div', b:topLeft});
-	el({a:'h4', b:el({a:'div', b:topLeft.children[2]})}).textContent = 'TITLE';
+	el({a:'span', b:el({a:'div', b:topLeft.children[2]})}).textContent = 'TITLE';
 	el({a:'span', b:el({a:'div', b:topLeft.children[2]}) }).textContent = 'Subtitle';
-	el({a:'h1', b:el({a:'div', b:topLeft.children[2]}), c:{class:'weekly-stat'} }).textContent = '467k';
+	el({a:'span', b:el({a:'div', b:topLeft.children[2]}), c:{class:'weekly-stat'} }).textContent = '467k';
 	el({a:'span', b:el({a:'div', b:topLeft.children[2]}) }).textContent = 'Last week: 10,154';
 	
 	el({a:'div', b:topLeft});
-	el({a:'h4', b:el({a:'div', b:topLeft.children[3]})}).textContent = 'TITLE';
+	el({a:'span', b:el({a:'div', b:topLeft.children[3]})}).textContent = 'TITLE';
 	el({a:'span', b:el({a:'div', b:topLeft.children[3]}) }).textContent = 'Subtitle';
-	el({a:'h1', b:el({a:'div', b:topLeft.children[3]}), c:{class:'weekly-stat'} }).textContent = '43.5%';
+	el({a:'span', b:el({a:'div', b:topLeft.children[3]}), c:{class:'weekly-stat'} }).textContent = '43.5%';
 	el({a:'span', b:el({a:'div', b:topLeft.children[3]}) }).textContent = 'Last week: 10,154';
 	
 	//================  end topleft  ===================================
@@ -59,26 +61,26 @@ const divTop=a=>{
 	el({a:'div', b:topRight});
 	el({a:'div', b:topRight, c:{style:'width:0px;border:1px solid black;'}});
 	el({a:'div', b:topRight});
-	el({a:'h4', b:topRight.children[0]}).textContent = 'REGION';
-	el({a:'h4', b:topRight.children[2]}).textContent = 'PERFORMANCE';
+	el({a:'span', b:topRight.children[0]}).textContent = 'REGION';
+	el({a:'span', b:topRight.children[2]}).textContent = 'PERFORMANCE';
 	
 	el({a:'table', b:topRight.children[0]});
 	el({a:'tr', b:topRight.children[0].children[1]});
 	el({a:'td', b:topRight.children[0].children[1].children[0]}).textContent = 'Area';
 	var label = el({a:'label', b:el({a:'td', b:topRight.children[0].children[1].children[0]}), c:{class:'switch'}});
-	el({a:'input', b:label, c:{type:'checkbox'}});
+	el({a:'input', b:label, c:{type:'radio', name:'area1', value:'area', checked:true}});
 	el({a:'span', b:label, c:{class:'slider'}});
 	
 	el({a:'tr', b:topRight.children[0].children[1]});
 	el({a:'td', b:topRight.children[0].children[1].children[1]}).textContent = 'Telkom Regional';
 	var label = el({a:'label', b:el({a:'td', b:topRight.children[0].children[1].children[1]}), c:{class:'switch'}});
-	el({a:'input', b:label, c:{type:'checkbox'}});
+	el({a:'input', b:label, c:{type:'radio', name:'area1', value:'treg'}});
 	el({a:'span', b:label, c:{class:'slider'}});
 	
 	el({a:'tr', b:topRight.children[0].children[1]});
 	el({a:'td', b:topRight.children[0].children[1].children[2]}).textContent = 'TSel Regional';
 	var label = el({a:'label', b:el({a:'td', b:topRight.children[0].children[1].children[2]}), c:{class:'switch'}});
-	el({a:'input', b:label, c:{type:'checkbox'}});
+	el({a:'input', b:label, c:{type:'radio', name:'area1', value:'tselreq'}});
 	el({a:'span', b:label, c:{class:'slider'}});
 	
 	el({a:'table', b:topRight.children[2]});
@@ -129,8 +131,20 @@ const NavNote=a=>{
 	const c=el({a:'div', b:a, c:{id:'NavLayer'}});
 	el({a:'img', b:c, c:{src:'res/icons/Layer2.svg'}});//,width:36,height:36
 	
-	const d=el({a:'div', b:a, c:{id:'NavZoom'}});
-	el({a:'img', b:d, c:{src:'res/icons/Zoom Out.svg'}});//,width:36,height:36
+	elm.zoom1 = el({a:'div', b:a, c:{id:'NavZoomOut'}});
+	el({a:'img', b:elm.zoom1, c:{src:'res/icons/Zoom Out.svg'}});//,width:36,height:36
+	
+	elm.zoom1.onclick =()=>{
+		if (map1.lvl == 2) {
+			mapLoadData({src:'province.json', lvl:1, name:'ADM1_EN', old:map1.src1});
+		}
+		else if (map1.lvl == 3) {
+			mapLoadData({src:`${map1.dt.features[0].properties.ADM1_PCODE.substring(2)}/${map1.dt.features[0].properties.ADM2_PCODE.substring(2)}.json`, lvl:2, name:'ADM2_EN', old:map1.src1});
+		}
+		else if (map1.lvl == 4) {
+			mapLoadData({src:`${map1.dt.features[0].properties.ADM1_PCODE.substring(2)}/${map1.dt.features[0].properties.ADM2_PCODE.substring(2)}/${map1.dt.features[0].properties.ADM3_PCODE.substring(2)}.json`, lvl:3, name:'ADM3_EN', old:map1.src1});
+		}
+	}
 }
 
 const LegendPerformance=a=>{
@@ -150,9 +164,8 @@ const LegendPerformance=a=>{
 const hiChartJs=a=>{
 	Highcharts.chart(el({a:'div', b:a}), {
 		chart: {
-			backgroundColor: 'rgba(0,0,0,0)',
-			height: null,
-			style:{"fontSize":"10px"},
+			height: '224px',
+			backgroundColor: 'rgba(203,210,211, 0.3)',
 			type: 'line'
 			},
 			title: {
@@ -162,11 +175,11 @@ const hiChartJs=a=>{
 				text: ''
 			},
 			xAxis: {
-				categories: ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu', 'senin', 'selasa', 'rabu', 'kamis', 'jumat']
+				categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 			},
 			yAxis: {
 				title: {
-					text: ''
+					text: '<b>Latency Status</b> <br/>of National Region'
 					}
 			},
 			plotOptions: {
@@ -178,31 +191,28 @@ const hiChartJs=a=>{
 				}
 			},
 			series: [{
-				name: 'Random data',
+				name: 'Random Data1',
 				data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
 				}, {
-				name: 'Random data',
+				name: 'Random Data2',
 				data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
 			}]
 		});
 	
-	const b=el({a:'div', b:a, c:{class:'judul'}});
-	el({a:'p', b:b}).textContent = 'Latency Status';
-	el({a:'p', b:b}).textContent = 'of National Region';
+	const b = el({a:'div', b:a, c:{id:'ChartBottomLastUpdate'}});
 	
-	el({a:'span', b:el({a:'div', b:a, c:{id:'ChartBottomLastUpdate'}})}).textContent = 'Last Update: 20.05';
-	
-	const c=el({a:'div', b:a, c:{id:'slideContainer'}});
+	const c=el({a:'div', b:b, c:{id:'slideContainer'}});
 	el({a:'span', b:c}).textContent = 'Weekly';
 	el({a:'br', b:c});
 	el({a:'input', b:c, c:{type:'range', min:0, max:2, step:1, value:1}}).oninput=a=>{
 		const b = ['Daily', 'Weekly', 'Monthly'];
 		document.querySelector('#slideContainer > span').textContent = b[a.target.value];
 	};
+	el({a:'span', b:b}).textContent = 'Last Update: 20.05';
 }
 
 const map1 = {
-	src1: 'province.json',//'area.json',
+	src1: '../data/province.json',//'area.json',
 	lvl: 1,
 	dt: null,
 	Prop: {
@@ -227,24 +237,25 @@ const addSrc1=a=>{
 		'id': `f${a.a}`,
 		'type': 'fill',
 		'source': a.a,
-		'layout': {},
 		'paint': {
 			'fill-color': ['get', 'color'],
-			'fill-opacity': [ 'case', ['boolean', ['feature-state', 'hover'], false], 0.8, 0.7]
+			'fill-opacity': [ 'case', ['boolean', ['feature-state', 'hover'], false], 0.8, 0.7],
+			'fill-outline-color': 'white'
 		}
 	});
-	// Add a black outline around the polygon.
+	/*
 	map.addLayer({
-		'id': `l${a.a}`,
-		'type': 'line',
-		'source': a.a,
-		'layout': {},
-		'paint': {
-			'line-color': 'white',
-			'line-width': [ 'case', ['boolean', ['feature-state', 'hover'], false], 2, 1]
+		id: `s${a.a}`,
+		type: 'symbol',
+		source: a.a,
+		layout: {
+			'text-field': ['get', 'ADM1_EN'],
+			//'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+			//'text-radial-offset': 0.5,
+			'text-justify': 'auto'
 		}
 	});
-	
+	*/
 	map.on('mousemove', `f${a.a}`, a=> {
 		if (map1.src1 !== null && a.features.length > 0) {
 			if (map1.hoveredStateId) {
@@ -277,7 +288,7 @@ const addSrc1=a=>{
 		if (map1.src1 !== null && a.features.length > 0) {
 			map1.dt.features.forEach(b=>{
 				if(b.properties[map1.Prop.Name] == a.features[0].properties[map1.Prop.Name]){
-					map.fitBounds(turf.bbox(b.geometry), {padding: 200})
+					map.fitBounds(turf.bbox(b.geometry), {padding: 300})
 				}
 			});
 			if (map1.lvl == 1) {
@@ -340,7 +351,7 @@ const mapLoadData=a=>{
 	map1.Prop.Name = a.name;
 	
 	const b = new XMLHttpRequest();
-	b.open('GET', `data/${map1.src1}`);
+	b.open('GET', `../data/${map1.src1}`);
 	b.onreadystatechange=()=>{
 		if (b.readyState == 4 && b.status == 200) {
 			map1.dt = JSON.parse(b.responseText);
@@ -374,18 +385,27 @@ const NavLeftSwitch=a=>{
 }
 
 (()=>{
-	const a=el({a:'div', b:document.body, c:{id:'National'}});
+	const mCT = el({a:'div', b:document.body, c:{class:'mainCT'}});
+	const a=el({a:'div', b:mCT, c:{id:'National'}});
 	
 	el({a:'div', b:a, c:{id:'map'}});
 	mapBox();
-	hiChartJs(el({a:'div', b:document.body, c:{id:'ChartBottom'}}));
+	hiChartJs(el({a:'div', b:a, c:{id:'ChartBottom'}}));
 	
 	elm.title = el({a:'span', b:el({a:'div', b:a, c:{id:'divTittle'}})});
 	elm.title.textContent = 'NATIONAL REGION';
 	
-	//divTop(a);
-	divTop(document.body);
-	NavLeft(document.body);
-	NavNote(document.body);
-	LegendPerformance(document.body);
+	divTop(a);
+	NavLeft(a);
+	NavNote(a);
+	LegendPerformance(a);
+	
+	document.body.onresize=()=>{
+		const mCT = document.querySelector('.mainCT');
+		const vw = mCT.clientWidth/1440,
+		vh = mCT.clientHeight/1024;
+		if (vw > vh) a.style.transform = `translate(${(mCT.clientWidth-1440)/2}px,${(mCT.clientHeight-1024)/2}px) scale(${vh})`;
+		else a.style.transform = `translate(${(mCT.clientWidth-1440)/2}px,${(mCT.clientHeight-1024)/2}px) scale(${vw})`;
+	}
+	document.body.onresize();
 })();

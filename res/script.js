@@ -212,7 +212,7 @@ const hiChartJs=a=>{
 }
 
 const map1 = {
-	src1: '../data/province.json',//'area.json',
+	src1: 'data/province.json',//'area.json',
 	lvl: 1,
 	dt: null,
 	Prop: {
@@ -351,7 +351,7 @@ const mapLoadData=a=>{
 	map1.Prop.Name = a.name;
 	
 	const b = new XMLHttpRequest();
-	b.open('GET', `../data/${map1.src1}`);
+	b.open('GET', `data/${map1.src1}`);
 	b.onreadystatechange=()=>{
 		if (b.readyState == 4 && b.status == 200) {
 			map1.dt = JSON.parse(b.responseText);

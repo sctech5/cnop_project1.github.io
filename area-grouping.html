@@ -463,10 +463,6 @@ const popup1 = el({a:'div', b:document.body, c:{style:'position:fixed;top:2px;le
 		}
 	})()
 	
-	const btnSave = el({a:'button', b:el({a:'div', b:document.body, c:{style:'position:fixed;top:2px;right:2px;'}})});
-	btnSave.textContent = 'Save Data';
-	btnSave.onclick=()=>{ saveAs1(map1.src1, map1.dt) }
-	
 })();
 
 const zoomTo1=()=>{

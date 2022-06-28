@@ -226,8 +226,8 @@ const hiChartJs=a=>{
 	const c=el({a:'div', b:b, c:{id:'slideContainer'}});
 	el({a:'span', b:c}).textContent = 'Weekly';
 	el({a:'br', b:c});
-	el({a:'input', b:c, c:{type:'range', min:0, max:2, step:1, value:1}}).oninput=a=>{
-		const b = ['Daily', 'Weekly', 'Monthly'];
+	el({a:'input', b:c, c:{type:'range', min:0, max:1, step:1, value:1}}).oninput=a=>{
+		const b = ['Daily', 'Weekly'];//, 'Monthly'];
 		document.querySelector('#slideContainer > span').textContent = b[a.target.value];
 	};
 	el({a:'span', b:b}).textContent = 'Last Update: 20.05';
@@ -463,6 +463,21 @@ const popup1 = el({a:'div', b:document.body, c:{style:'position:fixed;top:2px;le
 		}
 	})()
 	
+	(()=>{
+		const marker = el({a:'div', b:a, c:{style:'position: absolute; width: 130px; height: 215px; left: 218px; top: 186px;'}});
+		const b = el({a:'div', b:el({a:'div', b:marker, c:{style:'padding: 18px 12px 6px;'}}), c:{style:'display:flex;flex-direction:column;justify-content:center;align-items:center;background:rgba(0,0,0,0.6);width:130px;height:130px;border-radius:85px;opacity:0.9;'}});
+		el({a:'p', b:b, c:{style:'margin:0;font-style:normal;font-weight:700;font-size:12px;line-height:150%;color: #FFFFFF;'} }).textContent = 'AREA 1';
+		el({a:'p', b:b, c:{style:'margin:0;font-style:normal;font-weight:700;font-size:12px;line-height:150%;color: #FFFFFF;'} }).textContent = '#1 Telkomsel';
+		el({a:'p', b:b, c:{style:'margin:0;font-style:normal;font-weight:400;font-size:12px;line-height:150%;color: #FFFFFF;'} }).textContent = '#2 Indosat';
+		el({a:'p', b:b, c:{style:'margin:0;font-style:normal;font-weight:400;font-size:12px;line-height:150%;color: #FFFFFF;'} }).textContent = '#3 XL';
+		
+		//new mapboxgl.Marker({
+		//	element: marker
+		//})
+		//.setLngLat([120, 1])
+		//.addTo(map);
+	})()
+
 })();
 
 const zoomTo1=()=>{

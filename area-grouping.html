@@ -461,7 +461,7 @@ const popup1 = el({a:'div', b:document.body, c:{style:'position:fixed;top:2px;le
 			//map.setPaintProperty(`f${map1.src1}`, 'fill-color', ['to-color', ['at', ['get', map1.area], ['literal', map1.Prop.dcolor]]]);
 			map.getSource(map1.src1).setData(map1.dt);
 		}
-	})()
+	})();
 	
 	(()=>{
 		const marker = el({a:'div', b:a, c:{style:'position: absolute; width: 130px; height: 215px; left: 218px; top: 186px;'}});
@@ -476,7 +476,7 @@ const popup1 = el({a:'div', b:document.body, c:{style:'position:fixed;top:2px;le
 		//})
 		//.setLngLat([120, 1])
 		//.addTo(map);
-	})()
+	})();
 
 })();
 

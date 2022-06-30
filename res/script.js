@@ -64,23 +64,30 @@ const divTop=a=>{
 	el({a:'span', b:topRight.children[0]}).textContent = 'REGION';
 	el({a:'span', b:topRight.children[2]}).textContent = 'PERFORMANCE';
 	
+	const switchArea=a=>{
+		map1.area = a.target.value;
+		//map.getSource(map1.src1).setData(map1.dt);
+		mapUnloadData(map1.src1);
+		addSrc1({a:map1.src1, b:map1.dt});
+	}
+	
 	el({a:'table', b:topRight.children[0]});
 	el({a:'tr', b:topRight.children[0].children[1]});
 	el({a:'td', b:topRight.children[0].children[1].children[0]}).textContent = 'Area';
 	var label = el({a:'label', b:el({a:'td', b:topRight.children[0].children[1].children[0]}), c:{class:'switch'}});
-	el({a:'input', b:label, c:{type:'radio', name:'area1', value:'area', checked:true}});
+	el({a:'input', b:label, c:{type:'radio', name:'area1', value:'a1', checked:true}}).onchange = switchArea;
 	el({a:'span', b:label, c:{class:'slider'}});
 	
 	el({a:'tr', b:topRight.children[0].children[1]});
 	el({a:'td', b:topRight.children[0].children[1].children[1]}).textContent = 'Telkom Regional';
 	var label = el({a:'label', b:el({a:'td', b:topRight.children[0].children[1].children[1]}), c:{class:'switch'}});
-	el({a:'input', b:label, c:{type:'radio', name:'area1', value:'treg'}});
+	el({a:'input', b:label, c:{type:'radio', name:'area1', value:'a2'}}).onchange = switchArea;
 	el({a:'span', b:label, c:{class:'slider'}});
 	
 	el({a:'tr', b:topRight.children[0].children[1]});
 	el({a:'td', b:topRight.children[0].children[1].children[2]}).textContent = 'TSel Regional';
 	var label = el({a:'label', b:el({a:'td', b:topRight.children[0].children[1].children[2]}), c:{class:'switch'}});
-	el({a:'input', b:label, c:{type:'radio', name:'area1', value:'tselreq'}});
+	el({a:'input', b:label, c:{type:'radio', name:'area1', value:'a3'}}).onchange = switchArea;
 	el({a:'span', b:label, c:{class:'slider'}});
 	
 	el({a:'table', b:topRight.children[2]});
@@ -117,7 +124,7 @@ const NavLeft=a=>{
 	el({a:'img', b:el({a:'div', b:b}), c:{src:'res/icons/cx.svg', class:'btn1 checked'}}).onclick = NavLeftSwitch;
 	el({a:'img', b:b.children[1], c:{src:'res/icons/np.svg', class:'btn1'}}).onclick = NavLeftSwitch;
 	el({a:'img', b:b.children[1], c:{src:'res/icons/gp.svg', class:'btn1'}}).onclick = NavLeftSwitch;
-	el({a:'img', b:b.children[1], c:{src:'res/icons/cx.svg', class:'btn1'}}).onclick = NavLeftSwitch;
+	el({a:'img', b:b.children[1], c:{src:'res/icons/Report2.svg', class:'btn1'}}).onclick = NavLeftSwitch;
 	
 	el({a:'img', b:el({a:'div', b:b}), c:{src:'res/icons/Profile2.svg'}});
 	el({a:'img', b:b.children[2], c:{src:'res/icons/Logout2.svg'}});
@@ -204,27 +211,62 @@ const hiChartJs=a=>{
 	const c=el({a:'div', b:b, c:{id:'slideContainer'}});
 	el({a:'span', b:c}).textContent = 'Weekly';
 	el({a:'br', b:c});
-	el({a:'input', b:c, c:{type:'range', min:0, max:2, step:1, value:1}}).oninput=a=>{
-		const b = ['Daily', 'Weekly', 'Monthly'];
+	el({a:'input', b:c, c:{type:'range', min:0, max:1, step:1, value:1}}).oninput=a=>{
+		const b = ['Daily', 'Weekly'];//, 'Monthly'];
 		document.querySelector('#slideContainer > span').textContent = b[a.target.value];
 	};
 	el({a:'span', b:b}).textContent = 'Last Update: 20.05';
 }
 
 const map1 = {
-	src1: 'data/province.json',//'area.json',
+	src1: '../data/province.json',//'area.json',
 	lvl: 1,
+	next: 'ADM2_PCODE',
 	dt: null,
+	area: 'a1',
 	Prop: {
 		Name: 'ADM1_PCODE',//'nama',
 		dcolor: ['#5788FE', '#21A7A7', '#FBC246', '#FF7B6A', '#FD2D6C'],
-		ids: [
-			['ID11','ID12','ID13','ID14','ID15','ID16','ID17','ID18','ID19','ID20','ID21'],
-			['ID31', 'ID32', 'ID36'],
-			['ID33', 'ID34', 'ID35', 'ID51', 'ID52', 'ID53']
-		]
+		color: {
+			a1: [0, 2, 1, 4, 0],
+			a2: [0, 2, 1, 3, 2, 4, 0, 2],
+			a3: [0, 2, 4, 1, 0, 2, 3, 4, 0, 1, 3, 2, 1]
+		}
 	},
-	hoveredStateId: null
+	selected: 0,
+	hoveredStateId: null,
+	mapOnMouseenter: a=>{
+		if (map1.src1 !== null && a.features.length > 0) {
+			if (map1.hoveredStateId) {
+				map.setFeatureState(
+					{ source: map1.src1, id: map1.hoveredStateId },
+					{ hover: false }
+				);
+			}
+			elm.title.textContent = a.features[0].properties.nama;
+			map1.hoveredStateId = a.features[0].id;
+			map.setFeatureState(
+				{ source: map1.src1, id: map1.hoveredStateId },
+				{ hover: true }
+			);
+		}
+	},
+	mapOnMmouseleave: ()=>{
+		if (map1.src1 !== null && map1.hoveredStateId !== null) {
+			map.setFeatureState(
+				{ source: map1.src1, id: map1.hoveredStateId },
+				{ hover: false }
+			);
+			elm.title.textContent = 'NATIONAL REGION';
+		}
+		map1.hoveredStateId = null;
+	},
+	mapOnClick: a=>{
+		if (map1.src1 !== null && a.features.length > 0) {
+			map1.selected = a.features[0].id;
+			mapLoadData({src:`${map1.selected}.json`, lvl:map1.lvl+1, name: 'nama', old:map1.src1});
+		}
+	}
 }
 
 const addSrc1=a=>{
@@ -234,15 +276,15 @@ const addSrc1=a=>{
 		//generateId: true
 	});
 	map.addLayer({
-		'id': `f${a.a}`,
-		'type': 'fill',
-		'source': a.a,
-		'paint': {
-			'fill-color': ['get', 'color'],
-			'fill-opacity': [ 'case', ['boolean', ['feature-state', 'hover'], false], 0.8, 0.7],
+		id: `f${a.a}`,
+		type: 'fill',
+		source: a.a,
+		paint: {
+			'fill-color': ['to-color', ['at', ['at', ['get', map1.area], ['literal', map1.Prop.color[map1.area]]], ['literal', map1.Prop.dcolor]]],
+			'fill-opacity': [ 'case', ['boolean', ['feature-state', 'hover'], false], 0.9, 1],
 			'fill-outline-color': 'white'
 		}
-	});
+	}, 'country-label');
 	/*
 	map.addLayer({
 		id: `s${a.a}`,
@@ -256,61 +298,15 @@ const addSrc1=a=>{
 		}
 	});
 	*/
-	map.on('mousemove', `f${a.a}`, a=> {
-		if (map1.src1 !== null && a.features.length > 0) {
-			if (map1.hoveredStateId) {
-				map.setFeatureState(
-					{ source: map1.src1, id: map1.hoveredStateId },
-					{ hover: false }
-				);
-			}
-			elm.title.textContent = a.features[0].properties[map1.Prop.Name];
-			map1.hoveredStateId = a.features[0].id;
-			map.setFeatureState(
-				{ source: map1.src1, id: map1.hoveredStateId },
-				{ hover: true }
-			);
-		}
-	});
-	
-	map.on('mouseleave', `f${a.a}`, () => {
-		if (map1.src1 !== null && map1.hoveredStateId !== null) {
-			map.setFeatureState(
-				{ source: map1.src1, id: map1.hoveredStateId },
-				{ hover: false }
-			);
-			elm.title.textContent = 'NATIONAL REGION';
-		}
-		map1.hoveredStateId = null;
-	});
-	
-	map.on('click', `f${a.a}`, a=> {
-		if (map1.src1 !== null && a.features.length > 0) {
-			map1.dt.features.forEach(b=>{
-				if(b.properties[map1.Prop.Name] == a.features[0].properties[map1.Prop.Name]){
-					map.fitBounds(turf.bbox(b.geometry), {padding: 300})
-				}
-			});
-			if (map1.lvl == 1) {
-				mapLoadData({src:`${a.features[0].properties.ADM1_PCODE.substring(2)}.json`, lvl:2, name:'ADM2_EN', old:map1.src1});
-			}
-			else if (map1.lvl == 2) {
-				mapLoadData({src:`${a.features[0].properties.ADM1_PCODE.substring(2)}/${a.features[0].properties.ADM2_PCODE.substring(2)}.json`, lvl:2, name:'ADM3_EN', old:map1.src1});
-			}
-			else if (map1.lvl == 3) {
-				mapLoadData({src:`${a.features[0].properties.ADM1_PCODE.substring(2)}/${a.features[0].properties.ADM2_PCODE.substring(2)}/${a.features[0].properties.ADM3_PCODE.substring(2)}.json`, lvl:2, name:'ADM4_EN', old:map1.src1});
-			}
-		}
-	});
+	map.on('mousemove', `f${a.a}`, map1.mapOnMouseenter);
+	//map.on('mouseleave', `f${a.a}`, map1.mapOnMmouseleave);
+	map.on('click', `f${a.a}`, map1.mapOnClick);
 	/*
 	map.on('click', `f${a.a}`, a=> {
 		if (map1.src1 !== null && a.features.length > 0) {
 			map1.dt.features.forEach(b=>{if(b.properties.id == a.features[0].properties.id){
 				map.fitBounds(turf.bbox(b.geometry), {padding: 300})
 			}})
-			//map.flyTo({
-			//	center: turf.centerOfMass(turf[(a.features[0].geometry.type == 'MultiPolygon' ? 'multiPolygon' : 'polygon')](a.features[0].geometry.coordinates)).geometry.coordinates//a.features[0].geometry.coordinates
-			//});
 		}
 	});
 	*/
@@ -322,12 +318,29 @@ const mapBox=()=>{
 		container: 'map', // container ID
 		style: 'mapbox://styles/mapbox/light-v10', //'mapbox://styles/mapbox/streets-v11', // style URL
 		center: [117, -2.8], // starting position [lng, lat]
-		zoom: 4 // starting zoom
+		zoom: 4.2 // starting zoom
 	});
 	//const mapControls = ['scrollZoom', 'boxZoom', 'dragRotate', 'dragPan', 'keyboard', 'doubleClickZoom', 'touchZoomRotate'];
 	['scrollZoom', 'dragRotate', 'dragPan', 'keyboard', 'doubleClickZoom', 'touchZoomRotate'].forEach(a=>map[a].disable());
 	//==================================================================
 	map.on('load', () => {
+		map.setPadding({
+			top: 150,
+			left: 80,
+			bottom: 300,
+			right: 10
+		});
+		const mLayers = map.getStyle().layers;
+		//console.log(mLayers);
+		map.setPaintProperty('land', 'background-color', '#ffffff');
+		map.setPaintProperty('water', 'fill-color', '#f0f0f0');
+		map.setPaintProperty('waterway-label', 'text-color', '#c0c0c0');
+		map.setPaintProperty('water-line-label', 'text-color', '#c0c0c0');
+		map.setPaintProperty('water-point-label', 'text-color', '#c0c0c0');
+		map.setPaintProperty('country-label', 'text-color', '#c0c0c0');
+		mLayers.forEach(a=>{
+			if (['land', 'water', 'waterway-label', 'water-line-label', 'water-point-label', 'country-label'].indexOf(a.id) < 0) map.removeLayer(a.id);
+		})
 		mapLoadData({src:'province.json', lvl:1, name:'ADM1_PCODE'});
 	});
 	return map;
@@ -335,9 +348,9 @@ const mapBox=()=>{
 
 const mapUnloadData=a=>{
 	if (map.getLayer(`f${a}`)) {
-		map.off('mousemove', `f${a}`);
-		map.off('mouseleave', `f${a}`);
-		map.off('click', `f${a}`);
+		map.off('mousemove', `f${a}`, map1.mapOnMouseenter);
+		//map.off('mouseleave', `f${a}`);
+		map.off('click', `f${a}`, map1.mapOnClick);
 		map.removeLayer(`f${a}`);
 	}
 	map.getLayer(`l${a}`) && map.removeLayer(`l${a}`);
@@ -355,24 +368,8 @@ const mapLoadData=a=>{
 	b.onreadystatechange=()=>{
 		if (b.readyState == 4 && b.status == 200) {
 			map1.dt = JSON.parse(b.responseText);
-			map1.dt.features.forEach((c,d)=>{
-				if (map1.Prop.ids[0].indexOf(c.properties.ADM1_PCODE) > -1) {
-					map1.dt.features[d].id = 1;
-					map1.dt.features[d].properties.color = map1.Prop.dcolor[2];
-				} else if (map1.Prop.ids[1].indexOf(c.properties.ADM1_PCODE) > -1) {
-					map1.dt.features[d].id = 2;
-					map1.dt.features[d].properties.color = map1.Prop.dcolor[1];
-				} else if (map1.Prop.ids[2].indexOf(c.properties.ADM1_PCODE) > -1) {
-					map1.dt.features[d].id = 3;
-					map1.dt.features[d].properties.color = map1.Prop.dcolor[4];
-				} else {
-					map1.dt.features[d].id = 4;
-					map1.dt.features[d].properties.color = map1.Prop.dcolor[0];
-				}
-			});
 			addSrc1({a:map1.src1, b:map1.dt});
-			//map.fitBounds(turf.bbox(map1.dt.features), {padding: 100});
-			//map.fitBounds(turf.bbox(map1.dt.features), {padding: 50});
+			if (map1.dt.properties.bounds) map.fitBounds(map1.dt.properties.bounds);
 		}
 	}
 	b.send();
@@ -384,10 +381,34 @@ const NavLeftSwitch=a=>{
 	a.target.classList.add('checked');
 }
 
+const saveAs1=(a,b)=>{
+	const c = document.createElement('a');
+	c.setAttribute('download', a);
+	c.href = URL.createObjectURL(new Blob([JSON.stringify(b)], {type: 'application/JSON'}));
+	document.body.appendChild(c);
+	c.click();
+	document.body.removeChild(c);
+}
+
+const loader1=a=>{
+	const b = new XMLHttpRequest();
+	b.open('GET', a);
+	b.onreadystatechange=()=>{
+		if (b.readyState == 4 && b.status == 200) {
+			console.log(b.responseText);
+		}
+	}
+	b.send();
+}
+
+const popup1 = el({a:'div', b:document.body, c:{style:'position:fixed;top:2px;left:2px;color:white;'}});
+
 (()=>{
+	//el({a:'div', b:document.body, c:{id:'map'}});
 	const mCT = el({a:'div', b:document.body, c:{class:'mainCT'}});
 	const a=el({a:'div', b:mCT, c:{id:'National'}});
 	
+	//el({a:'div', b:document.body, c:{id:'map'}});
 	el({a:'div', b:a, c:{id:'map'}});
 	mapBox();
 	hiChartJs(el({a:'div', b:a, c:{id:'ChartBottom'}}));
@@ -404,8 +425,16 @@ const NavLeftSwitch=a=>{
 		const mCT = document.querySelector('.mainCT');
 		const vw = mCT.clientWidth/1440,
 		vh = mCT.clientHeight/1024;
-		if (vw > vh) a.style.transform = `translate(${(mCT.clientWidth-1440)/2}px,${(mCT.clientHeight-1024)/2}px) scale(${vh})`;
-		else a.style.transform = `translate(${(mCT.clientWidth-1440)/2}px,${(mCT.clientHeight-1024)/2}px) scale(${vw})`;
+		if (vw > vh) document.getElementById('National').style.transform = `translate(${(mCT.clientWidth-1440)/2}px,${(mCT.clientHeight-1024)/2}px) scale(${vh})`;
+		else document.getElementById('National').style.transform = `translate(${(mCT.clientWidth-1440)/2}px,${(mCT.clientHeight-1024)/2}px) scale(${vw})`;
+		//map.resize();
 	}
 	document.body.onresize();
+	
 })();
+
+const zoomTo1=()=>{
+	//console.log(a);
+	map1.popup.remove();
+	mapLoadData({src:`${map1.selected}.json`, lvl:map1.lvl+1, name: 'nama', old:map1.src1})
+}

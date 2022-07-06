@@ -1,0 +1,159 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"/>
+<title>Dasboard</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+<link rel="stylesheet" href="res/style.css" type="text/css">
+<script src="res/chart.min.js"></script>
+<script src="res/chartjs-plugin-datalabels.js"></script>
+
+</head><body>
+
+<div id="mySidepanel" class="sidepanel">
+	<div>
+		<!--
+		<img src="res/WhatsApp Image 2022-07-06 at 12.58.04 PM.jpeg" height="100">
+		-->
+		<h2 style='text-align:center;'>DASBOARD HCBP</h2>
+	</div>
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+
+<div class="menua">
+  <div class="menub"><i class="fa fa-home"></i>Dasboard By Categories</div>
+  <div class="menuc"><i class="fa fa-database"></i>Demografi Telkom Group</div>
+  <div class="menuc"><i class="fa fa-users"></i>Digital Talent Program</div>
+  <div class="menuc"><i class="fa fa-truck"></i>Demografi HCBP Center</div>
+  <div class="menuc"><i class="fa fa-flask"></i>Outlook Pergerakan</div>
+  <div class="menuc" onclick=""><i class="fa fa-cubes"></i>Produk</div>
+</div>
+<div class="menua">
+  <div class="menub" onclick=""><i class="fa fa-cart-plus"></i>Reporting</div>
+</div>
+<div class="menua">
+  <div class="menub" onclick=""><i class="fa fa-cart-arrow-down"></i>Admin</div>
+</div>
+</div>
+<!--
+<div id="mySidepanel" class="sidepanel">
+	<div>
+		<img src="res/WhatsApp Image 2022-07-06 at 12.58.04 PM.jpeg" height="100">
+		<h2 style='display:inline-block;'>DASBOARD HCBP</h2>
+	</div>
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="#">Demografi Telkom Group</a>
+  <a href="#">Digital Talent Program</a>
+  <a href="#">Demografi HCBP Center</a>
+  <a href="#">Outlook Pergeraan</a>
+</div>
+-->
+<script>
+const el=a=>{
+	const b=document.createElement(a.a);
+	a.b && a.b.appendChild(b);
+	a.c && Object.keys(a.c).forEach(c=>{
+		b.setAttribute(c, a.c[c])
+	});
+	return b;
+}
+
+const drawLogo=()=>{
+	el({a:'img', c:{src:'res/logo.png'}}).onload=b=>{
+		const c = document.getElementById('logo1').getContext('2d');
+		c.drawImage(b.target, 0,0);
+		c.globalCompositeOperation = 'source-in';
+		//c.fillStyle = '#4CAF50';
+		//c.fillRect(0, 0, c.canvas.width, c.canvas.height);
+	}
+}
+
+function openNav() {
+  document.getElementById("mySidepanel").style.width = "300px";
+}
+
+function closeNav() {
+  document.getElementById("mySidepanel").style.width = "0";
+}
+
+const donut1=a1=>{
+	const a = el({a:'div', b:el({a:'div', b:a1.ct, c:{class:'responsive'}}), c:{class:'gallery'}});
+	el({a:'div', b:a, c:{class:'desc'}}).innerHTML = a1.judul;
+	const b = new Chart(el({a:'canvas', b:a}), {
+		type: a1.type,
+		data: {
+			datasets: [{
+				
+				data: a1.data,
+				backgroundColor: [
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)'
+				],
+				borderWidth: 0
+			}]
+		},
+		plugins: [{
+			id: 'text1',
+			afterDraw: a=> {
+				const ctx = a.ctx;
+				const width = a.width,
+				height = a.height;
+				
+				const fontSize = (height / 114).toFixed(2);
+				ctx.font = fontSize + "em Verdana";
+				ctx.textBaseline = "middle";
+				
+				const text = a1.textTengah,
+				textX = Math.round((width - ctx.measureText(text).width) / 2),
+				textY = (height / 2);
+				ctx.fillStyle = '#313131';
+				ctx.fillText(text, textX, textY);
+			}
+		}],
+	});
+}
+
+const bar1=a1=>{
+	const a = el({a:'div', b:el({a:'div', b:a1.ct, c:{class:'responsive'}}), c:{class:'gallery'}});
+	el({a:'div', b:a, c:{class:'desc'}}).innerHTML = a1.judul;
+	const b = new Chart(el({a:'canvas', b:a}), {
+		type: 'bar',
+		data: {
+			labels: ['satu', 'dua', 'tiga', 'empat'],
+			datasets: [{
+				label: 'My First Dataset',
+				data: [65, 59, 80, 81],
+				backgroundColor: [
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(255, 159, 64, 0.2)',
+					'rgba(255, 205, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)'
+				],
+				borderColor: [
+					'rgb(255, 99, 132)',
+					'rgb(255, 159, 64)',
+					'rgb(255, 205, 86)',
+					'rgb(75, 192, 192)'
+				],
+				borderWidth: 1
+			}]
+		}
+	});
+}
+
+(()=>{
+	(()=>{
+		  const a = document.querySelectorAll('div.menub');
+		  const b = a.length;
+		  for (var i=0;i<b;i++) a[i].addEventListener('click', a=>{a.target.parentElement.classList.toggle('menud');});
+	})();
+	const a = el({a:'div', b:document.body, c:{id:'headerCT'}});
+	el({a:'img', b:a, c:{src:'res/menu.svg'}}).onclick = openNav;
+	el({a:'h3', b:a}).textContent = 'DEMOGRAFI TELKOM GRUP';
+	const b = el({a:'div', b:document.body, c:{id:'mainCT'}});
+	donut1({ct:b, judul:'Total FTE', type:'doughnut', data:[40, 22, 39], textTengah:"23,590"})
+	donut1({ct:b, judul:'Group Divisi FTE', type:'doughnut', data:[22, 40, 90], textTengah:"31,410"})
+	donut1({ct:b, judul:'Generasi FTE', type:'pie', data:[50, 90, 30], textTengah:"12,930"})
+	bar1({ct:b, judul:'Usia FTE'});
+	//drawLogo();
+})()
+</script>

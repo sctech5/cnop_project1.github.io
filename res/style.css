@@ -16,6 +16,7 @@ html, body {
 	position: relative;
 	width: 1440px;/*1440px;*/
 	height: 1024px;
+	border:1px solid red;
 /*	background: #FFFFFF;*/
 }
 #divTittle {
@@ -363,4 +364,24 @@ span.weekly-stat {
 	/*height: 490px;*/
 	/*left: 108px;*/
 	/*top: 267px;*/
+}
+div.markerCX {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 8px;
+	width: 130px;
+	height: 130px;
+	background: rgba(0, 0, 0, 0.6);
+	opacity: 0.9;
+	border-radius: 85px;
+}
+div.markerCX > h4, div.markerCX > p {
+	color: #FFFFFF;
+	margin: 0;
+	padding: 0;
+}
+div.markerCX > p.markerCXbold {
+	font-weight: bold;
 }
